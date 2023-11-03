@@ -1,5 +1,7 @@
 <?php
 
+use app\Framework\Providers\AppServiceProvider;
+use app\Framework\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Facade;
 
 return [
@@ -29,15 +31,16 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Illuminate\Queue\QueueServiceProvider::class,
         /*
          * Package Service Providers...
          */
-
+        LaravelDoctrine\ORM\DoctrineServiceProvider::class,
         /*
          * Application Service Providers...
          */
-        \app\Framework\Providers\AppServiceProvider::class,
-        \app\Framework\Providers\RouteServiceProvider::class,
+        AppServiceProvider::class,
+        RouteServiceProvider::class,
     ],
     'aliases' => Facade::defaultAliases()->merge([])->toArray(),
 ];

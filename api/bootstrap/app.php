@@ -1,44 +1,17 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Create The Application
-|--------------------------------------------------------------------------
-|
-| The first thing we will do is create a new Laravel application instance
-| which serves as the "glue" for all the components of Laravel, and is
-| the IoC container for the system binding all of the various parts.
-|
-*/
+use app\Framework\Application\Console\Kernel as ApplicationConsoleKernel;
+use app\Framework\Application\Exceptions\Handler;
+use app\Framework\Application\Http\Kernel as ApplicationHttpKernel;
+use Illuminate\Contracts\Console\Kernel as FrameworkConsoleKernel;
+use Illuminate\Contracts\Debug\ExceptionHandler;
+use Illuminate\Contracts\Http\Kernel as FrameworkHttpKernel;
+use Illuminate\Foundation\Application;
 
-$app = new Illuminate\Foundation\Application(
-    $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
-);
+$app = new Application($_ENV['APP_BASE_PATH'] ?? dirname(__DIR__));
 
-/*
-|--------------------------------------------------------------------------
-| Bind Important Interfaces
-|--------------------------------------------------------------------------
-|
-| Next, we need to bind some important interfaces into the container so
-| we will be able to resolve them when needed. The kernels serve the
-| incoming requests to this application from both the web and CLI.
-|
-*/
-
-$app->singleton(
-    Illuminate\Contracts\Http\Kernel::class,
-    \app\Framework\Http\Kernel::class
-);
-
-$app->singleton(
-    Illuminate\Contracts\Console\Kernel::class,
-    \app\Framework\Console\Kernel::class
-);
-
-$app->singleton(
-    Illuminate\Contracts\Debug\ExceptionHandler::class,
-    \app\Framework\Exceptions\Handler::class
-);
+$app->singleton(FrameworkHttpKernel::class, ApplicationHttpKernel::class);
+$app->singleton(FrameworkConsoleKernel::class, ApplicationConsoleKernel::class);
+$app->singleton(ExceptionHandler::class, Handler::class);
 
 return $app;
