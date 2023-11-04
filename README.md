@@ -51,12 +51,12 @@ curl -L 'localhost/api/admin/language' -H 'Content-Type: application/json' -d '{
         {
             "tokenType": "compare",
             "type": "regex",
-            "rule": "/<>|[<>]=?|(?<![:\-+*\/])=/"
+            "rule": "/<>|[<>]=?|(?<![:\\-+*\\/])=/"
         },
         {
             "tokenType": "int",
             "type": "regex",
-            "rule": "/\\d+/"
+            "rule": "/(?<!\\.)\\d+(?!\\.)/"
         },
         {
             "tokenType": "real",

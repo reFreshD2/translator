@@ -31,11 +31,11 @@ enum TokenType: string
             self::BRACKET,
             self::PLUS_OPERATOR,
             self::MULTIPLY_OPERATOR,
-            self::SEPARATOR,
             self::INT,
             self::REAL,
             self::CHAR,
             self::STRING,
+            self::SEPARATOR,
             self::ID,
         ];
     }

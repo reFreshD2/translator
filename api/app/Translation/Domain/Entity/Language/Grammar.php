@@ -26,10 +26,6 @@ readonly class Grammar
 
     public function preprocessByRule(TokenType $tokenType, string $code): string
     {
-        if (!isset($this->ruleSet[$tokenType->value])) {
-            throw new DomainException('Unsupported token type');
-        }
-
         $processedCode = $code;
         foreach ($this->ruleSet[$tokenType->value] as $rule) {
             $processedCode = $rule->preprocess($processedCode);
@@ -43,7 +39,7 @@ readonly class Grammar
      */
     public function detectTokenType(string $word): TokenType
     {
-        foreach (TokenType::cases() as $tokenType) {
+        foreach (TokenType::sorted() as $tokenType) {
             foreach ($this->ruleSet[$tokenType->value] as $rule) {
                 if ($rule->isSatisfy($word)) {
                     return $tokenType;
