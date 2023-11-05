@@ -14,3 +14,8 @@ gherkin:
   contexts:
     default:
       - Tests\Acceptance\Lexical
+coverage:
+  enabled: true
+  remote: false
+  include:
+    - app/Translation/*
