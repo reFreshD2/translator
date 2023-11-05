@@ -10,3 +10,7 @@ actor_suffix: Tester
 extensions:
     enabled:
         - Codeception\Extension\RunFailed
+gherkin:
+  contexts:
+    default:
+      - Tests\Acceptance\Lexical

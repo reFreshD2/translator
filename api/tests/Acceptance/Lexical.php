@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tests\Acceptance\Translation\Infrastructure\Input\Http;
+namespace Tests\Acceptance;
 
 use Codeception\Actor;
 use Tests\Support\_generated\AcceptanceTesterActions;
 
-class MakeLexicalAnalyzeControllerTest extends Actor
+class Lexical extends Actor
 {
     private const CODE = 'var a:integer;\nbegin\nreadln(a);\na*=2;\nwriteln(a);\nend.';
     private const TOKENS = <<<EOD
